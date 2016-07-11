@@ -1,0 +1,15 @@
+{
+	"code": 200,
+	"message": "success",
+	"result": [
+		{
+			"recieveCity": "北京",
+			"recieveCityCode": 110,
+			"sendCity": "上海",
+			"sendCityCode": 111,
+			"totalAmount": 1,
+			"totalQuantity": 2
+		},
+		...
+	]
+}
