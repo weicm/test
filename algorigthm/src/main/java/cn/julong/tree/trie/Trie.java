@@ -2,6 +2,7 @@ package cn.julong.tree.trie;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by weicm on 2016/7/9.
@@ -182,6 +183,33 @@ public class Trie {
 		}
 		//否则：递归查找
 		return isExsit(nowNode, sub, id);
+	}
+
+	/**
+	 * 前缀遍历
+	 * @return
+	 */
+	public ArrayList<String> preorderIterator() {
+		ArrayList<String> strs = new ArrayList<String>();
+		preorderItrator(root, strs, "");
+		return strs;
+	}
+
+	private void preorderItrator(TrieNode node, List<String> strs, String parent) {
+		//当前节点为空，直接返回
+		if(null == node) {
+			return;
+		}
+		//判断当前节点是否是单词，是则与祖先拼接，加入结果strs中
+		parent += node.getC();
+		if(node.getFreq() > 0) {
+			strs.add(parent);
+		}
+		//循环递归子节点
+		TrieNode[] childrens = node.getChildrens();
+		for (int i=0; i<childrens.length; i++) {
+			preorderItrator(childrens[i], strs, parent);
+		}
 	}
 
 }

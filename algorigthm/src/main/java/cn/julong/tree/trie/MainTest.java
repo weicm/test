@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -65,5 +66,11 @@ public class MainTest {
 			System.out.println(index +  "\t" +ss.get(index));
 		}
 
+		System.out.println("\n\n");
+		//排序
+		ArrayList<String> strs = trie.preorderIterator();
+		for (Iterator<String> iterator = strs.iterator(); iterator.hasNext(); ) {
+			System.out.println(iterator.next());
+		}
 	}
 }
