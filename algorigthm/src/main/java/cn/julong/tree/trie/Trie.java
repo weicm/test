@@ -175,9 +175,9 @@ public class Trie {
 		if(null == nowNode) {
 			return false;
 		}
-		//计算当前单词是否是最后一个
+		//计算当前单词是否是最后一个，并且id在结束节点的途径节点ids中存在
 		String sub = word.substring(1);
-		if(sub.length() == 0) {
+		if(sub.length() == 0 && node.getIds().indexOf(id) > -1) {
 			//是则：返回true
 			return true;
 		}
@@ -186,7 +186,7 @@ public class Trie {
 	}
 
 	/**
-	 * 前缀遍历
+	 * 先续遍历
 	 * @return
 	 */
 	public ArrayList<String> preorderIterator() {

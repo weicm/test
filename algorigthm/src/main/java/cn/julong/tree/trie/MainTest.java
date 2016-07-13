@@ -55,19 +55,20 @@ public class MainTest {
 
 		//词频查找
 		count = trie.wordFreq(FREQ);
-		System.out.println("FREQ-----------------------------: " + FREQ);
+		System.out.println("freq-----------------------------: " + FREQ);
 		System.out.println(count);
 
 		//前缀匹配查找
-		System.out.println("PREFIX-----------------------------: " + PREFIX);
+		System.out.println("prefix-----------------------------: " + PREFIX);
 		co = trie.prefixSearch(PREFIX);
 		for (Iterator<Integer> iterator = co.iterator(); iterator.hasNext(); ) {
 			Integer index = iterator.next();
 			System.out.println(index +  "\t" +ss.get(index));
 		}
 
-		System.out.println("\n\n");
+		System.out.println("\n");
 		//排序
+		System.out.println("sort-----------------------------");
 		ArrayList<String> strs = trie.preorderIterator();
 		for (Iterator<String> iterator = strs.iterator(); iterator.hasNext(); ) {
 			System.out.println(iterator.next());
