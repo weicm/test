@@ -120,37 +120,42 @@ public class Trie {
 	 * 删除单词
 	 * @param word
 	 */
-	public void deleteWord(String word, int id) {
+	public boolean deleteWord(String word, int id) {
 		//单词不存在，则直接返回
-		if(!isExsit(word, id)) {
-			return;
-		}
-		deleteWord(root, word, id);
+		return deleteWord(root, word, id);
 	}
 
-	private void deleteWord(TrieNode node, String word, int id) {
+	private boolean deleteWord(TrieNode node, String word, int id) {
 		//word为空，直接返回
 		if(null == word || word.length() == 0) {
-			return;
+			return false;
 		}
 		//获取当前字符，计算当前节点在符节点中的位置，获取当前节点
 		char c = word.charAt(0);
 		int index = c - 'a';
 		TrieNode nowNode = node.getChildrens()[index];
-		//删除途经单词id
-		nowNode.getIds().remove(nowNode.getIds().indexOf(id));
-		//计算当单词是否是最后一个
 		String sub = word.substring(1);
-		if(sub.length() == 0) {
-			//是则：如果途径单词ids，则直接删除节点
+		//计算当单词是否是最后一个并且指定id的节点存在
+		if(sub.length() == 0 && node.getIds().indexOf(id) > -1) {
+			//是则：如果途径单词ids.size=0，则直接删除该子节点
 			if(nowNode.getIds().size() == 0) {
 				node.getChildrens()[index] = null;
+			}else {
+				//否则：当前节点词频减1，删除途径id
+				nowNode.setFreq(nowNode.getFreq() - 1);
+				nowNode.getIds().remove(nowNode.getIds().indexOf(id));
 			}
-			//否则：词频减1，
-			nowNode.setFreq(nowNode.getFreq() - 1);
+			return true;
 		}
-		//否则：递归删除
-		deleteWord(nowNode, sub, id);
+		//递归删除子节点是否成功
+		boolean delSuccess = deleteWord(nowNode, sub, id);
+		if(delSuccess) {
+			//成功：删除当前节点(删除途径id)，返回true
+			nowNode.getIds().remove(nowNode.getIds().indexOf(id));
+			return true;
+		}
+		//否则：删除失败，所删节点不存在，返回false
+		return false;
 	}
 
 	/**

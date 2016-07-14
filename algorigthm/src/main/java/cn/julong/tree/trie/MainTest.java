@@ -50,13 +50,16 @@ public class MainTest {
 		System.out.println("\n");
 
 
-		//删除，词频查找
-		trie.deleteWord(FREQ, 95);
+		//第一次删除95，预期成功
+		boolean delSuccess = trie.deleteWord(FREQ, 95);
+		System.out.println("95 1 delSuccess: "+ delSuccess);
+		System.out.println("\n");
 
 		//词频查找
 		count = trie.wordFreq(FREQ);
 		System.out.println("freq-----------------------------: " + FREQ);
 		System.out.println(count);
+
 
 		//前缀匹配查找
 		System.out.println("prefix-----------------------------: " + PREFIX);
@@ -65,13 +68,19 @@ public class MainTest {
 			Integer index = iterator.next();
 			System.out.println(index +  "\t" +ss.get(index));
 		}
-
 		System.out.println("\n");
+
+		//第二次删除95，预期失败
+		delSuccess = trie.deleteWord(FREQ, 95);
+		System.out.println("95 2 delSuccess: "+ delSuccess);
+		System.out.println("\n");
+
 		//排序
-		System.out.println("sort-----------------------------");
+		/*System.out.println("sort-----------------------------");
 		ArrayList<String> strs = trie.preorderIterator();
 		for (Iterator<String> iterator = strs.iterator(); iterator.hasNext(); ) {
 			System.out.println(iterator.next());
-		}
+		}*/
 	}
+
 }
