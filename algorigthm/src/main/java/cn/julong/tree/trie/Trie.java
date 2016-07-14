@@ -20,6 +20,11 @@ public class Trie {
 		addWord(root, word, id);
 	}
 
+	/**
+	 * @param node 当前要处理的节点
+	 * @param word 要处理单词的子串
+	 * @param id 要处理单词的id
+	 */
 	private void addWord(TrieNode node, String word, int id) {
 		//单词是否为空，为空直接返回
 		if (null == word || word.length() == 0) {
@@ -61,8 +66,8 @@ public class Trie {
 
 	/**
 	 * 词频查询
-	 * @param node
-	 * @param prefix
+	 * @param node 当前要处理的节点
+	 * @param prefix 要出里的前缀子串
 	 * @return
 	 */
 	private ArrayList<Integer> prefixSearch(TrieNode node ,String prefix) {
@@ -89,10 +94,20 @@ public class Trie {
 		return prefixSearch(nowNode, sub);
 	}
 
+	/**
+	 * 词频统计
+	 * @param word
+	 * @return
+	 */
 	public int wordFreq(String word) {
 		return wordFreq(root, word);
 	}
 
+	/**
+	 * @param node 当前处理的节点
+	 * @param word 要处理的单词子串
+	 * @return
+	 */
 	private int wordFreq(TrieNode node, String word) {
 		//word为空，直接返回0
 		if(null == word || word.length() == 0) {
@@ -125,6 +140,12 @@ public class Trie {
 		return deleteWord(root, word, id);
 	}
 
+	/**
+	 * @param node 当前处理的节点
+	 * @param word 要处理的单词子串
+	 * @param id 要处理的单词id
+	 * @return
+	 */
 	private boolean deleteWord(TrieNode node, String word, int id) {
 		//word为空，直接返回
 		if(null == word || word.length() == 0) {
@@ -167,6 +188,12 @@ public class Trie {
 		return isExsit(root, word, id);
 	}
 
+	/**
+	 * @param node 当前节点
+	 * @param word 要处理的单词子串
+	 * @param id 要处理的单词id
+	 * @return
+	 */
 	private boolean isExsit(TrieNode node, String word, int id) {
 		//word为空，直接返回false
 		if(null == word || word.length() == 0) {
@@ -200,13 +227,19 @@ public class Trie {
 		return strs;
 	}
 
+	/**
+	 * @param node 当前处理的节点
+	 * @param strs 结果集
+	 * @param parent 祖先字符串
+	 */
 	private void preorderItrator(TrieNode node, List<String> strs, String parent) {
 		//当前节点为空，直接返回
 		if(null == node) {
 			return;
 		}
-		//判断当前节点是否是单词，是则与祖先拼接，加入结果strs中
+		//与祖先拼接
 		parent += node.getC();
+		//判断当前节点是否是单词，是则加入结果strs中
 		if(node.getFreq() > 0) {
 			strs.add(parent);
 		}
