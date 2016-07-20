@@ -20,11 +20,6 @@
 	</bean>
 
 	<websocket:message-broker application-destination-prefix="/app">
-		<websocket:transport>
-			<websocket:decorator-factories>
-				<bean class="cn.julong.main.controller.MyDecorator"></bean>
-			</websocket:decorator-factories>
-		</websocket:transport>
 		<websocket:stomp-endpoint path="/hi">
 			<websocket:sockjs/>
 		</websocket:stomp-endpoint>

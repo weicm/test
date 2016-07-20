@@ -15,6 +15,7 @@
 		<module>websocket</module>
 		<module>hbase</module>
 		<module>algorigthm</module>
+		<module>hadoop</module>
 	</modules>
 
 

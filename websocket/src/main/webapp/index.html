@@ -17,7 +17,7 @@
 		function connect() {
 			var socket = new SockJS('/ws/rest/hi');
 			stompClient = Stomp.over(socket);
-			stompClient.connect({}, function(frame) {
+			stompClient.connect({"company": "hehe"}, function(frame) {
 				setConnected(true);
 				console.log('Connected: ' + frame);
 				stompClient.subscribe('/topic/hello', function(greeting){
@@ -28,7 +28,8 @@
 
 		function disconnect() {
 			if (stompClient != null) {
-				stompClient.send("/app/hi", {}, JSON.stringify({ 'name': 'stop' }));
+//				stompClient.send("/app/hi", {}, JSON.stringify({ 'name': 'stop' }));
+				stompClient.unsubscribe("/topic/hello");
 				stompClient.disconnect();
 			}
 			setConnected(false);
