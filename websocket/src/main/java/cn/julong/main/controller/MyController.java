@@ -3,8 +3,6 @@ package cn.julong.main.controller;
 import cn.julong.main.bean.Hi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
-import org.springframework.messaging.MessageChannel;
-import org.springframework.messaging.converter.MessageConverter;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -12,25 +10,14 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.socket.PongMessage;
-import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.client.WebSocketConnectionManager;
-import org.springframework.web.socket.handler.TextWebSocketHandler;
-import org.springframework.web.socket.handler.WebSocketSessionDecorator;
 import org.springframework.web.socket.messaging.AbstractSubProtocolEvent;
-import org.springframework.web.socket.messaging.SessionDisconnectEvent;
-import org.springframework.web.socket.messaging.SessionSubscribeEvent;
-import org.springframework.web.socket.messaging.SessionUnsubscribeEvent;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Think on 2016/7/8.
  */
 @Controller
 @RequestMapping("/mvc")
-public class MyController implements ApplicationListener<AbstractSubProtocolEvent> {
+public class MyController {
 
 	private SimpMessagingTemplate template;
 
@@ -59,7 +46,7 @@ public class MyController implements ApplicationListener<AbstractSubProtocolEven
 					@Override
 					public void run() {
 						while (run) {
-							template.convertAndSend("/topic/hello", "{\"num\": \""+ hi.getName() + MyDecorator.getSessions().size() +"\"}");
+							template.convertAndSend("/topic/hello", "{\"num\": \""+ hi.getName() +"\"}");
 							try {
 								Thread.sleep(2000);
 							} catch (InterruptedException e) {e.printStackTrace();}
@@ -83,11 +70,5 @@ public class MyController implements ApplicationListener<AbstractSubProtocolEven
 
 		return "test ......";
 
-	}
-
-	public void onApplicationEvent(AbstractSubProtocolEvent event) {
-		StompHeaderAccessor sha = StompHeaderAccessor.wrap(event.getMessage());
-
-		System.out.println(sha+"--"+sha.getDestination());
 	}
 }
