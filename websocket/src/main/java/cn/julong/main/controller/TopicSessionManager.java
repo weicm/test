@@ -25,6 +25,7 @@ public class TopicSessionManager implements ApplicationListener<AbstractSubProto
 
 		StompHeaderAccessor sha = StompHeaderAccessor.wrap(event.getMessage());
 
+
 		System.out.println(event);
 	}
 }
