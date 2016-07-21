@@ -25,4 +25,11 @@
 		</websocket:stomp-endpoint>
 		<websocket:simple-broker prefix="/topic"/>
 	</websocket:message-broker>
+	<websocket:handlers>
+		<websocket:mapping path="/test" handler="testHandler"/>
+	</websocket:handlers>
+	<websocket:handlers>
+		<websocket:mapping path="/test" handler="testHandler"/>
+		<websocket:sockjs/>
+	</websocket:handlers>
 </beans>
