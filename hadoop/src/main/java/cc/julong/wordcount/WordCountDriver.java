@@ -23,7 +23,6 @@ import java.util.Set;
  */
 public class WordCountDriver extends Configured implements Tool {
 	public int run(String[] strings) throws Exception {
-		String userName = getConf().get("user.name");
 		Job job = Job.getInstance(getConf(), "word count");
 		job.setJarByClass(WordCountDriver.class);
 		job.setMapperClass(WordCountMapper.class);
