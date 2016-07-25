@@ -38,6 +38,37 @@ public final class Config {
 	}
 
 	/**
+	 * 获取properties对象
+	 * @return
+	 */
+	public static Properties getConf() {
+		return prop;
+	}
+	/**
+	 * 加载其他配置文件
+	 * @param file
+	 * @return
+	 */
+	public static boolean load(String file) {
+		if(!file.startsWith("/")) {
+			file = "/"+file;
+		}
+		InputStream in = Config.class.getResourceAsStream(file);
+		try {
+			prop.load(in);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				in.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return true;
+	}
+	/**
 	 * 从lantern.common工程的类路径下的指定文件中获取属性
 	 * @param file 文件名，相对工程class目录
 	 * @return
