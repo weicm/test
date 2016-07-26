@@ -47,7 +47,6 @@ public class WordCountDriver extends Configured implements Tool {
 	}
 
 	public static void main(String[] args) throws Exception {
-		System.setProperty("user.name", "hdfs");
 		int res = ToolRunner.run(new Configuration(), new WordCountDriver(), args);
 		System.exit(res);
 	}
