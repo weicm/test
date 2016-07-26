@@ -16,6 +16,7 @@
 		<module>hbase</module>
 		<module>algorigthm</module>
 		<module>hadoop</module>
+		<module>model</module>
 	</modules>
 
 
