@@ -4,11 +4,14 @@ package cn.julong.disjointset;
  * Created by Think on 2016/7/14.
  */
 public class DisjointSet {
-	private static final int SCALE = 10;
+	private static int SCALE = 10;
 	private int[] father;
 	private int[] rank;
 
-	public DisjointSet() {
+	public DisjointSet(Integer scale) {
+		if(null != scale) {
+			SCALE = scale;
+		}
 		father = new int[SCALE];
 		rank = new int[SCALE];
 
