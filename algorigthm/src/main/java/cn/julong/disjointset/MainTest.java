@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 /**
  * Created by Think on 2016/7/26.
+ * 判断两个节点是否属于同一棵树
  */
 public class MainTest {
 	public static void main(String[] args) {
