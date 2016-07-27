@@ -30,9 +30,9 @@ public class DisjointSet {
 
 	public int getFather(int x) {
 		if(father[x] == x) {
-			return father[x];
+			father[x] = getFather(father[x]);
 		}
-		return getFather(father[x]);
+		return father[x];
 	}
 
 	public void union(int x, int y) {
@@ -44,7 +44,7 @@ public class DisjointSet {
 		if(rank[xf] > rank[yf]) {
 			father[yf] = xf;
 		}else {
-			if(rank[xf] > rank[yf]) {
+			if(rank[xf] == rank[yf]) {
 				rank[yf]++;
 			}
 			father[xf] = yf;
